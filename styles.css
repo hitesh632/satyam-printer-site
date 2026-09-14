@@ -1,0 +1,349 @@
+/* ===========================================================
+   Satyam Printer — tokens
+   =========================================================== */
+:root{
+  --ink:        #14171F;
+  --ink-soft:   #2A2E3A;
+  --paper:      #F2EEE3;
+  --paper-dim:  #E7E0CE;
+  --cyan:       #1791A6;
+  --magenta:    #B0326B;
+  --yellow:     #D9A916;
+  --rust:       #C1440E;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+  --wrap: 1120px;
+}
+
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+.wrap{
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+h1, h2, h3{
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); max-width: 20ch; }
+h3{ font-size: 1.15rem; }
+
+p{ margin: 0 0 1em; max-width: 62ch; }
+
+a{ color: inherit; }
+
+.skip-link{
+  position: absolute; left: -999px; top: 0;
+  background: var(--rust); color: var(--paper);
+  padding: 8px 14px; z-index: 100;
+}
+.skip-link:focus{ left: 12px; top: 12px; }
+
+:focus-visible{
+  outline: 2px solid var(--rust);
+  outline-offset: 3px;
+}
+
+/* ===========================================================
+   Header
+   =========================================================== */
+.site-header{
+  position: sticky; top: 0; z-index: 50;
+  background: var(--paper);
+  border-bottom: 1px solid var(--paper-dim);
+}
+.header-row{
+  display: flex; align-items: center; justify-content: space-between;
+  height: 68px;
+}
+.brand{
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
+  text-decoration: none; color: var(--ink);
+}
+.brand-marks{ display: inline-flex; gap: 3px; }
+.dot{ width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.dot-c{ background: var(--cyan); }
+.dot-m{ background: var(--magenta); }
+.dot-y{ background: var(--yellow); }
+.dot-k{ background: var(--ink); }
+
+.primary-nav{
+  display: flex; align-items: center; gap: 28px;
+  font-size: 0.95rem;
+}
+.primary-nav a{ text-decoration: none; color: var(--ink-soft); }
+.primary-nav a:hover{ color: var(--rust); }
+.nav-cta{
+  font-family: var(--font-mono);
+  color: var(--ink) !important;
+  border: 1px solid var(--ink);
+  padding: 7px 12px;
+  border-radius: 3px;
+}
+.nav-cta:hover{ background: var(--ink); color: var(--paper) !important; }
+
+.nav-toggle{
+  display: none;
+  flex-direction: column; justify-content: center; gap: 5px;
+  width: 40px; height: 40px;
+  background: none; border: none; cursor: pointer;
+}
+.nav-toggle span{ height: 2px; background: var(--ink); border-radius: 1px; }
+
+@media (max-width: 780px){
+  .nav-toggle{ display: flex; }
+  .primary-nav{
+    position: absolute; top: 68px; left: 0; right: 0;
+    background: var(--paper);
+    flex-direction: column; align-items: flex-start;
+    gap: 18px; padding: 22px 28px 28px;
+    border-bottom: 1px solid var(--paper-dim);
+    display: none;
+  }
+  .primary-nav.open{ display: flex; }
+  .nav-cta{ align-self: flex-start; }
+}
+
+/* ===========================================================
+   Hero
+   =========================================================== */
+.hero{ background: var(--ink); color: var(--paper); }
+.hero-grid{
+  display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center;
+  gap: 40px;
+  padding: 84px 0 64px;
+}
+.kicker{
+  font-family: var(--font-mono); font-size: 0.85rem;
+  color: var(--paper-dim); margin-bottom: 18px;
+  letter-spacing: 0.02em;
+}
+.hero h1{
+  font-size: clamp(2.3rem, 5vw, 3.6rem);
+  max-width: 14ch;
+  color: var(--paper);
+}
+.hero-lede{ color: #C9C4B4; max-width: 46ch; font-size: 1.05rem; }
+.hero-actions{ display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+
+.btn{
+  display: inline-block;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.95rem;
+  padding: 13px 22px; border-radius: 3px;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+.btn-primary{ background: var(--rust); color: var(--paper); }
+.btn-primary:hover{ background: #a53a0c; }
+.btn-ghost{ border-color: #494e5e; color: var(--paper); }
+.btn-ghost:hover{ border-color: var(--paper); }
+
+.hero-mark{ display: flex; justify-content: center; }
+.registration{ width: 100%; max-width: 300px; }
+.reg-ring circle, .reg-ring line{ fill: none; stroke-width: 1.4; opacity: 0.9; }
+.reg-c{ stroke: var(--cyan); }
+.reg-m{ stroke: var(--magenta); }
+.reg-y{ stroke: var(--yellow); }
+.reg-k{ stroke: var(--paper); }
+
+.reg-ring{
+  opacity: 0;
+  transform: scale(0.9);
+  transform-origin: center;
+  animation: regIn 0.7s ease-out forwards;
+}
+.reg-c{ animation-delay: 0.05s; }
+.reg-m{ animation-delay: 0.25s; }
+.reg-y{ animation-delay: 0.45s; }
+.reg-k{ animation-delay: 0.65s; }
+@keyframes regIn{
+  to{ opacity: 0.9; transform: scale(1); }
+}
+
+.spec-strip{ background: #0F1117; border-top: 1px solid #262a35; }
+.spec-row{
+  display: flex; flex-wrap: wrap; gap: 28px;
+  padding: 16px 0;
+  font-family: var(--font-mono); font-size: 0.85rem;
+  color: #A8A296;
+}
+.spec-row b{ color: var(--paper); }
+
+@media (max-width: 780px){
+  .hero-grid{ grid-template-columns: 1fr; padding: 56px 0 40px; text-align: left; }
+  .hero-mark{ order: -1; max-width: 220px; margin: 0 auto 12px; }
+}
+
+/* ===========================================================
+   Sections (generic)
+   =========================================================== */
+.section{ padding: 84px 0; }
+.section-dim{ background: var(--paper-dim); }
+.section-lede{ color: #4A4E58; font-size: 1.02rem; }
+
+/* ===========================================================
+   Services
+   =========================================================== */
+.service-list{
+  list-style: none; margin: 40px 0 0; padding: 0;
+  display: grid; gap: 0;
+  border-top: 1px solid #D9D1BB;
+}
+.service-list li{
+  display: grid; grid-template-columns: 24px 1fr;
+  gap: 20px;
+  padding: 26px 0;
+  border-bottom: 1px solid #D9D1BB;
+}
+.ink-dot{
+  width: 13px; height: 13px; border-radius: 50%;
+  margin-top: 7px;
+}
+.service-list h3{ margin-bottom: 6px; }
+.service-list p{ margin: 0; color: #4A4E58; }
+
+/* ===========================================================
+   Flow (capabilities)
+   =========================================================== */
+.flow{
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin: 36px 0 28px;
+}
+.flow-step{
+  font-family: var(--font-mono); font-size: 0.85rem; font-weight: 500;
+  color: var(--paper);
+  padding: 16px 14px;
+  text-align: center;
+  border-radius: 2px;
+}
+.step-c{ background: var(--cyan); }
+.step-m{ background: var(--magenta); }
+.step-y{ background: var(--yellow); color: var(--ink); }
+.step-k{ background: var(--ink); }
+.flow-note{ max-width: 56ch; }
+
+@media (max-width: 700px){
+  .flow{ grid-template-columns: 1fr 1fr; }
+}
+
+/* ===========================================================
+   Industries (runsheet)
+   =========================================================== */
+.runsheet{ margin-top: 36px; border-top: 1px solid #D9D1BB; }
+.runsheet-row{
+  display: grid; grid-template-columns: 220px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid #D9D1BB;
+}
+.runsheet-label{ font-family: var(--font-mono); font-size: 0.92rem; }
+.runsheet-detail{ color: #4A4E58; }
+
+@media (max-width: 640px){
+  .runsheet-row{ grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* ===========================================================
+   Why us
+   =========================================================== */
+.reasons{
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 32px 28px;
+  margin-top: 36px;
+}
+.reason p{ color: #4A4E58; margin: 0; }
+.reason h3{ margin-bottom: 6px; }
+
+@media (max-width: 780px){
+  .reasons{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 520px){
+  .reasons{ grid-template-columns: 1fr; }
+}
+
+/* ===========================================================
+   City manifest
+   =========================================================== */
+.city-manifest{
+  display: flex; flex-wrap: wrap; gap: 10px 0;
+  margin-top: 24px;
+  font-family: var(--font-mono); font-size: 0.95rem;
+}
+.city-manifest span:not(:last-child)::after{
+  content: '•';
+  color: var(--rust);
+  margin: 0 14px;
+}
+
+/* ===========================================================
+   Contact
+   =========================================================== */
+.contact{ background: var(--ink); color: var(--paper); }
+.contact h2{ color: var(--paper); }
+.contact .section-lede{ color: #C9C4B4; }
+.contact-grid{
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px; align-items: start;
+}
+.contact .btn-primary{ margin-top: 10px; }
+
+.contact-card{
+  background: #1B1E28;
+  border: 1px solid #2C303C;
+  border-radius: 3px;
+  padding: 30px;
+}
+.contact-card dl{ margin: 0; }
+.contact-card dl > div{
+  display: grid; grid-template-columns: 90px 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #2C303C;
+  font-size: 0.95rem;
+}
+.contact-card dl > div:last-child{ border-bottom: none; }
+.contact-card dt{
+  font-family: var(--font-mono); font-size: 0.78rem;
+  color: #8B8778; text-transform: uppercase; letter-spacing: 0.03em;
+  padding-top: 2px;
+}
+.contact-card dd{ margin: 0; }
+.contact-card a{ text-decoration: none; }
+.contact-card a:hover{ color: var(--yellow); }
+
+@media (max-width: 780px){
+  .contact-grid{ grid-template-columns: 1fr; }
+}
+
+/* ===========================================================
+   Footer
+   =========================================================== */
+.site-footer{ background: #0F1117; color: #8B8778; padding: 28px 0; }
+.footer-row{ display: flex; align-items: center; gap: 14px; }
+.footer-row p{ margin: 0; font-size: 0.85rem; }
